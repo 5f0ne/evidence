@@ -1,0 +1,9 @@
+env/
+dist/
+data/
+build/
+output/
+*-setup-*
+**/__pycache__
+**/*.egg-info/
+notes.md
