@@ -3,7 +3,7 @@ import os
 from string import Template
 
 from evidence.model.Line import Line
-from evidence.model.Action import Action
+from evidence.model.MEAction import MEAction
 
 class MergeEvidence():
     def __init__(self) -> None:
@@ -72,7 +72,7 @@ class MergeEvidence():
                 actionName = file.split(".")[0]
                 # If there is no action yet
                 if(len(self._actions) == 0):
-                    a = Action(actionName)
+                    a = MEAction(actionName)
                     a.increment()
                     self._actions.append(a)
                 else:
@@ -86,7 +86,7 @@ class MergeEvidence():
                             break
                     # If action is not created yet...
                     if(not actionListed):
-                        a = Action(actionName)
+                        a = MEAction(actionName)
                         a.increment()
                         self._actions.append(a)
 

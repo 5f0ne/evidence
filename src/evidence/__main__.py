@@ -1,6 +1,4 @@
-import os
 import sys
-
 import argparse
 
 from evidence.Controller import Controller
@@ -31,7 +29,7 @@ def main(args_=None):
 
     # Characterize Evidence Phase
     ce = CharacterizeEvidence()
-  # ce.process()
+    ce.process(ctrl.pathME, ctrl.pathCE)
 
 
 if __name__ == "__main__":

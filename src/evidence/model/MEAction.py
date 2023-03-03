@@ -1,4 +1,4 @@
-class Action():
+class MEAction():
     def __init__(self, name) -> None:
         self.name = name
         self.occurence = 0
@@ -8,4 +8,4 @@ class Action():
         self.occurence += 1
 
     def __repr__(self):
-        return f"Action(Name: {self.name}, Occurence: {str(self.occurence)})"
+        return f"MEAction(Name: {self.name}, Occurence: {str(self.occurence)})"
