@@ -6,11 +6,10 @@ class PrepareEvidence():
         self.fileType = { "NEW_FILES": "New files", "DEL_FILES": "Deleted files", 
                           "RE_FILES": "Renamed files", "MOD_FILES": "Files with modified contents",
                           "PROP_FILES": "Files with changed properties"}
-        self._idiff = []    # Initiale Liste - Enthält die Zeilen der idiff Dateien
-        self._list = []     # Prozessierte Liste - Enthält die Zeilen die nach der gegebenen Logik 
-                            #                      prozessiert wurden
-        self._unique = []   # Duplikatfreie Liste - Enthält die Zeilen ohne Duplikate
-        self._sorted = []   # Sortierte Liste - Enthält die alphabetisch sortieren Zeilen
+        self._idiff = []    # Initial list - Contains all the lines of the idiff file
+        self._list = []     # processed list - Contains the lines after processing with the given logic
+        self._unique = []   # unique list - Contains only unique lines
+        self._sorted = []   # sorted list - Contains alphabetically sorted lines
     
     def _checkFileType(self, line):
         if(self.fileType["NEW_FILES"] in line):
@@ -56,10 +55,10 @@ class PrepareEvidence():
 
     def _process(self):
         for line in self._idiff:
-            # Prüft um welchen FileType es sich handelt und setzt den gegenwärtigen FileType
+            # Checks the current file type and set the current file type
             self._checkFileType(line)
 
-            # Handelt es sich um "New Files"...
+            # Is it "New Files"...
             if(self.currentType == self.fileType["NEW_FILES"]):
                 if(line != "" and line != "\n"):
                     newFile = line.split("\t")
@@ -67,14 +66,14 @@ class PrepareEvidence():
                         for ts in ["m", "a", "c", "cr"]:
                             self._addLine(newFile[1] + "\t" + ts)
 
-            # Handelt es sich um "Deleted Files"...
+            # Is it "Deleted Files"...
             elif(self.currentType == self.fileType["DEL_FILES"]):
                 if(line != "" and line != "\n"):
                     delFile = line.split("\t")
                     if(len(delFile) == 3):
                             self._addLine(delFile[1] + "\t" + "d")
 
-            # Handelt es sich um "Renamed Files", "Files with modified contents" oder
+            # Is it "Renamed Files", "Files with modified contents" oder
             # "Files with changed properties"...
             elif(self.currentType == self.fileType["RE_FILES"] 
                 or self.currentType == self.fileType["MOD_FILES"]
@@ -90,26 +89,28 @@ class PrepareEvidence():
                     elif("crtime" in line):
                         self._addLine(fi[0] + "\t" + "cr")
 
-    def process(self, path, file, pathPE):
-        self._reset()
-        # Name des neuen Files
-        newFileName = file.replace("idiff", "pe")
-        # Der vollständige Pfad aus Pfad und Dateiname
-        fullPath = os.path.join(path, file)
-        # Öffnet die jeweilige idiff Datei
-        idiff = open(fullPath, "r", encoding="utf-8")
-        # Liest alle Zeilen aus der idiff Datei
-        lines = idiff.readlines()
-        # Übergibt sie dem Controller
-        self._setIdiffData(lines)
-        # Entfernt Leerzeichen und Zeilenumbrüche 
-        self._sanitize() 
-        # Prozessiert die Zeilen nach der gegebenen Logik
-        self._process()
-        # Sorgt dafür, dass keine Duplikate vorhanden sind
-        self._makeUnique()
-        # Sortiert die Zeilen alphabetisch
-        self._sortAlphabetically()
-        # Schreibt die Zeilen in eine Datei
-        p = os.path.join(pathPE, newFileName)
-        self._writeToFile(p)  
+    def process(self, pathGE, pathPE):
+        for path, dirs, files in os.walk(pathGE):
+            for file in files:
+                self._reset()
+                # File ending of new file
+                newFileName = file.replace("idiff", "pe")
+                # Full path
+                fullPath = os.path.join(path, file)
+                # Opens the specific .idiff file
+                idiff = open(fullPath, "r", encoding="utf-8")
+                # Reads all the lines from the idiff file
+                lines = idiff.readlines()
+                # Sets the readed lines
+                self._setIdiffData(lines)
+                # Removes space and newlines
+                self._sanitize() 
+                # Processes lines with the given logic
+                self._process()
+                # Remove duplicates
+                self._makeUnique()
+                # Sort lines alphabetically
+                self._sortAlphabetically()
+                # Write to new file
+                p = os.path.join(pathPE, newFileName)
+                self._writeToFile(p)  

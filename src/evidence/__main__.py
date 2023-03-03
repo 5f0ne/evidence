@@ -18,24 +18,20 @@ def main(args_=None):
     parser.add_argument("--output", "-o", type=str, default="output", help="Path to result dir")
     args = parser.parse_args()
 
-    ctrl = Controller(output = args.output)
+    ctrl = Controller(args.output)
     ctrl.scaffold()
 
     # Prepare Evidence Phase
-
     pe = PrepareEvidence()
-
-    for path, dirs, files in os.walk(args.path):
-        for file in files:
-            pe.process(path, file, ctrl.pathPE)
+    pe.process(args.path, ctrl.pathPE)
 
     # Merge Evidence Phase
-
     me = MergeEvidence()
+    me.process(ctrl.pathPE, ctrl.pathME)
 
     # Characterize Evidence Phase
-
     ce = CharacterizeEvidence()
+  # ce.process()
 
 
 if __name__ == "__main__":

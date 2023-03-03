@@ -1,6 +1,6 @@
 # Description
 
-Differential analysis of DFXML idifference2.py output
+Differential analysis of DFXML idifference2.py output.
 
 # Installation
 
@@ -22,10 +22,22 @@ Differential analysis of DFXML idifference2.py output
 
 Given the following files, where the first placeholer describes
 the action and the secon placeholder describes the number of execution.
+The noise.idiff contains only information with no action applied.
 
 ```
 ge/
     *.*.idiff
+    noise.idiff
+```
+
+Important: the first placeholder is used as an identifier and must be
+the same for each following execution. Example:
+
+```
+ge/
+    a.1.idiff
+    a.2.idiff
+    a.3.idiff
     noise.idiff
 ```
 
@@ -34,7 +46,7 @@ ge/
 
 ```
 # The following directories will be created for each run of above command.
-# Note: Content of this directories will be deleted 
+# Note: Content of this directories will be cleared for each run
 
 output/
         ce/
