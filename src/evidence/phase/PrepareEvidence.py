@@ -42,6 +42,7 @@ class PrepareEvidence():
         file = open(path, "w", encoding="utf-8")
         for line in self._sorted:
             file.write(line + "\n")
+        print("    --> Write File: " + path)
 
     def _setIdiffData(self, idiff):
         self._idiff = idiff

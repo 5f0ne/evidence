@@ -38,14 +38,18 @@ class CharacterizeEvidence():
              
         for line in self._sortAlphabetically(w):
             file.write(line)
+
+        print("        --> Write File: " + path)
             
     def _sortAlphabetically(self, w):
         return sorted(w)
     
     def _calculate(self, indicator):
         me = set()
+        print("    --> Calculate Characteristic Evidence for: " + indicator)
         for action in self._actions:
             if(action.name != indicator):
+                print("        --> Action for Evidence Sum: " + action.name)
                 me = me | action.set
 
         for action in self._actions:

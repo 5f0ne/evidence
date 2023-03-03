@@ -45,18 +45,59 @@ ge/
 `python -m evidence -p path/to/idifference2result`
 
 ```
-# The following directories will be created for each run of above command.
-# Note: Content of this directories will be cleared for each run
+################################################################################
 
-output/
-        ce/
-            *.ce
-        me/
-            *.me
-        pe/
-            *.*.pe
+evidence by 5f0
+Differential analysis of DFXML idifference2.py output
+
+Current working directory: path/to/evidence
+
+Datetime: 01/01/1970 10:20:30
+
+################################################################################
+
+--> Creating folder structure
+    --> path/to/evidence/output
+
+--> Prepare Evidence
+    --> Write File: path/to/evidence/output/pe/a.1.pe
+    --> Write File: path/to/evidence/output/pe/a.2.pe
+    --> Write File: path/to/evidence/output/pe/a.3.pe
+    --> Write File: path/to/evidence/output/pe/b.1.pe
+    --> Write File: path/to/evidence/output/pe/b.2.pe
+    --> Write File: path/to/evidence/output/pe/b.3.pe
+    --> Write File: path/to/evidence/output/pe/c.1.pe
+    --> Write File: path/to/evidence/output/pe/c.2.pe
+    --> Write File: path/to/evidence/output/pe/c.3.pe
+    --> Write File: path/to/evidence/output/pe/noise.pe
+
+--> Merge Evidence
+    --> Write File: path/to/evidence/output/me/a.me
+    --> Write File: path/to/evidence/output/me/b.me
+    --> Write File: path/to/evidence/output/me/c.me
+    --> Write File: path/to/evidence/output/me/noise.me
+
+--> Characterize Evidence
+    --> Calculate Characteristic Evidence for a
+        --> Action for Evidence Sum: b
+        --> Action for Evidence Sum: c
+        --> Action for Evidence Sum: noise
+        --> Write File: path/to/evidence/output/me/a.ce
+    --> Calculate Characteristic Evidence for b
+        --> Action for Evidence Sum: a
+        --> Action for Evidence Sum: c
+        --> Action for Evidence Sum: noise
+        --> Write File: path/to/evidence/output/me/b.ce
+    --> Calculate Characteristic Evidence for c
+        --> Action for Evidence Sum: a
+        --> Action for Evidence Sum: b
+        --> Action for Evidence Sum: noise
+        --> Write File: path/to/evidence/output/me/c.ce
+
+################################################################################
+
+Execution Time: 2.519259 sec
 ```
-
 
 # License
 

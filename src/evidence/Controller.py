@@ -32,20 +32,31 @@ class Controller():
         self._clearFolders()
         self._createFolders()
 
-    def printHeader(self, path):
+    def printHeader(self):
         print("################################################################################")
         print("")
         print("evidence by 5f0")
-        print("Insert description here...")
+        print("Differential analysis of DFXML idifference2.py output")
         print("")
         print("Current working directory: " + os.getcwd())
         print("")
-        print(" Datetime: " + datetime.now().strftime("%d/%m/%Y %H:%M:%S"))
+        print("Datetime: " + datetime.now().strftime("%d/%m/%Y %H:%M:%S"))
         print("")
         print("################################################################################")
 
+    def printScaffolding(self):
+        print("")
+        print("--> Creating folder structure")
+        print("    --> " + self.workingDir)
+
+    def printPhase(self, phase):
+        print("")
+        print(phase)
+
     def printExecutionTime(self):
         end = time.time()
+        print("")
+        print("################################################################################")
         print("")
         print("Execution Time: " + str(end-self.startTime)[0:8] + " sec")
         print("")

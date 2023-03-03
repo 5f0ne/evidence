@@ -59,6 +59,8 @@ class MergeEvidence():
   
         for line in self._sortAlphabetically(w):
             file.write(line)
+
+        print("    --> Write File: " + path)
         
     def _sortAlphabetically(self, w):
         return sorted(w)

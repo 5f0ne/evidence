@@ -17,19 +17,24 @@ def main(args_=None):
     args = parser.parse_args()
 
     ctrl = Controller(args.output)
+    ctrl.printHeader()
+    ctrl.printScaffolding()
     ctrl.scaffold()
+    
 
-    # Prepare Evidence Phase
+    ctrl.printPhase("--> Prepare Evidence")
     pe = PrepareEvidence()
     pe.process(args.path, ctrl.pathPE)
 
-    # Merge Evidence Phase
+    ctrl.printPhase("--> Merge Evidence")
     me = MergeEvidence()
     me.process(ctrl.pathPE, ctrl.pathME)
 
-    # Characterize Evidence Phase
+    ctrl.printPhase("--> Characterize Evidence")
     ce = CharacterizeEvidence()
     ce.process(ctrl.pathME, ctrl.pathCE)
+
+    ctrl.printExecutionTime()
 
 
 if __name__ == "__main__":
