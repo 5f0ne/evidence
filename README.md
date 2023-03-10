@@ -82,17 +82,17 @@ Datetime: 01/01/1970 10:20:30
         --> Action for Evidence Sum: b
         --> Action for Evidence Sum: c
         --> Action for Evidence Sum: noise
-        --> Write File: path/to/evidence/output/me/a.ce
+        --> Write File: path/to/evidence/output/ce/a.ce
     --> Calculate Characteristic Evidence for b
         --> Action for Evidence Sum: a
         --> Action for Evidence Sum: c
         --> Action for Evidence Sum: noise
-        --> Write File: path/to/evidence/output/me/b.ce
+        --> Write File: path/to/evidence/output/ce/b.ce
     --> Calculate Characteristic Evidence for c
         --> Action for Evidence Sum: a
         --> Action for Evidence Sum: b
         --> Action for Evidence Sum: noise
-        --> Write File: path/to/evidence/output/me/c.ce
+        --> Write File: path/to/evidence/output/ce/c.ce
 
 ################################################################################
 
