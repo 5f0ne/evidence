@@ -10,7 +10,7 @@ Differential analysis of DFXML idifference2.py output.
 
 **From command line:**
 
-`python -m evidence --path PATH [--output OUTPUT]`
+`python -m evidence --path PATH [--output OUTPUT] [--occurence OCCURENCE]`
 
 | Option | Short | Type | Default | Description |
 |---|---|---|---|---|
