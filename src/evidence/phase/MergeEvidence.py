@@ -66,7 +66,6 @@ class MergeEvidence():
         return sorted(w)
 
     def process(self, pathPE, pathME): 
-
         # Go through all pe files to get all actions
         for path, dirs, files in os.walk(pathPE):
             for file in files:
@@ -100,22 +99,27 @@ class MergeEvidence():
                 pe = open(p, "r", encoding="utf-8")
                 lines = pe.readlines()
                 self._init(action.name, lines)
-        
-        # Read *.*.pe, compare to *.1.pe and write *.me
+
         for action in self._actions:
-            if(action.name != "noise"):
-                for i in range(2, (action.occurence+1)):
-                    name = self.nameTemplate.substitute(action=action.name, number=i)
-                    p = os.path.join(pathPE, name)
-                    pe = open(p, "r", encoding="utf-8")
-                    lines = pe.readlines()
-                    self._compare(action.name, lines)
+            if(action.occurence == 1):
+                # Check if action only have one occurence.
+                # If so, comparison is not needed
+                p_ = os.path.join(pathME, action.name + ".me")
+                self._writeToFile(action.name, p_)
+            else:
+                # Read *.*.pe, compare to *.1.pe and write *.me
+                if(action.name != "noise"):
+                    for i in range(2, (action.occurence+1)):
+                        name = self.nameTemplate.substitute(action=action.name, number=i)
+                        p = os.path.join(pathPE, name)
+                        pe = open(p, "r", encoding="utf-8")
+                        lines = pe.readlines()
+                        self._compare(action.name, lines)
                     p_ = os.path.join(pathME, action.name + ".me")
+                    self._writeToFile(action.name,  p_)
                 
-                self._writeToFile(action.name,  p_)
-            
         # Read noise.pe and write noise.me
-        p = os.path.join(pathPE, "noise.pe")
+        p = os.path.join(pathPE, "noise.1.pe")
         pe = open(p, "r", encoding="utf-8")
         lines = pe.readlines()
         self._init("noise", lines)

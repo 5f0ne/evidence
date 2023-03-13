@@ -14,6 +14,7 @@ def main(args_=None):
     parser = argparse.ArgumentParser()
     parser.add_argument("--path", "-p", type=str, required=True, help="Path to idifference output dir")
     parser.add_argument("--output", "-o", type=str, default="output", help="Path to result dir")
+    parser.add_argument("--occurence", "-c", type=int, default=2, help="The number of occurences in *.me to be used in ce processing")
     args = parser.parse_args()
 
     ctrl = Controller(args.output)
@@ -31,7 +32,7 @@ def main(args_=None):
     me.process(ctrl.pathPE, ctrl.pathME)
 
     ctrl.printPhase("--> Characterize Evidence")
-    ce = CharacterizeEvidence()
+    ce = CharacterizeEvidence(args.occurence)
     ce.process(ctrl.pathME, ctrl.pathCE)
 
     ctrl.printExecutionTime()

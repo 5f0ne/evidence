@@ -22,12 +22,14 @@ Differential analysis of DFXML idifference2.py output.
 
 Given the following files, where the first placeholer describes
 the action and the secon placeholder describes the number of execution.
-The noise.idiff contains only information with no action applied.
+
+IMPORTANT: noise.1.idiff needs to exsists. It contains only information 
+with no action applied.  
 
 ```
 ge/
     *.*.idiff
-    noise.idiff
+    noise.1.idiff
 ```
 
 Important: the first placeholder is used as an identifier and must be
@@ -38,7 +40,7 @@ ge/
     a.1.idiff
     a.2.idiff
     a.3.idiff
-    noise.idiff
+    noise.1.idiff
 ```
 
 
@@ -69,7 +71,7 @@ Datetime: 01/01/1970 10:20:30
     --> Write File: path/to/evidence/output/pe/c.1.pe
     --> Write File: path/to/evidence/output/pe/c.2.pe
     --> Write File: path/to/evidence/output/pe/c.3.pe
-    --> Write File: path/to/evidence/output/pe/noise.pe
+    --> Write File: path/to/evidence/output/pe/noise.1.pe
 
 --> Merge Evidence
     --> Write File: path/to/evidence/output/me/a.me

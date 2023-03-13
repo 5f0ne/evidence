@@ -3,8 +3,9 @@ import os
 from evidence.model.CEAction import CEAction
 
 class CharacterizeEvidence():
-    def __init__(self) -> None:
+    def __init__(self, occurence) -> None:
         self._actions = []
+        self._occurence = occurence
 
     def _initSet(self, indicator, list):
         set_ = self._getSetForIndicator(indicator)
@@ -12,7 +13,7 @@ class CharacterizeEvidence():
             line = l.split("\t")
             if(indicator == "noise"):
                 set_.add(line[0] + "\t" + line[1] + "\n")
-            if(int(line[2]) >= 2):                       # Only if evidence occures min 2 times
+            if(int(line[2]) >= self._occurence):                       # Only if evidence occures min 2 times
                 set_.add(line[0] + "\t" + line[1] + "\n")
         
     def _getSetForIndicator(self, indicator):
