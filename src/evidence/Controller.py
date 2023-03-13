@@ -5,9 +5,9 @@ import shutil
 from datetime import datetime
 
 class Controller():
-    def __init__(self, output) -> None:
+    def __init__(self, output = os.path.join(os.getcwd(), "output")) -> None:
         self.startTime = time.time()
-        self.workingDir = os.path.join(os.getcwd(), output) 
+        self.workingDir = output
         self.pathPE = os.path.join(self.workingDir, "pe")
         self.pathME = os.path.join(self.workingDir, "me")
         self.pathCE = os.path.join(self.workingDir, "ce")
