@@ -5,7 +5,7 @@ with open("README.md", "r") as r:
 
 setup(
     name="evidence",
-    version="2.1.0",
+    version="2.1.1",
     author="5f0",
     url="https://github.com/5f0ne/evidence",
     description="Differential analysis of DFXML idifference2.py output",

@@ -16,6 +16,7 @@ Differential analysis of DFXML idifference2.py output.
 |---|---|---|---|---|
 |--path | -p | String | - | Path to idifference output dir |
 |--output | -o | String | output | Path to result dir |
+|--occurence | -c | Int | 2 | The number of occurences in *.me to be used in ce processing |
 
 
 # Example
@@ -23,7 +24,7 @@ Differential analysis of DFXML idifference2.py output.
 Given the following files, where the first placeholer describes
 the action and the secon placeholder describes the number of execution.
 
-IMPORTANT: noise.1.idiff needs to exsists. It contains only information 
+IMPORTANT: noise.1.idiff needs to exsist. It contains only information 
 with no action applied.  
 
 ```
